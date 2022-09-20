@@ -2,16 +2,16 @@
 #include <iostream>
 using namespace std;
 
-class Mystring {
+class MyString {
 public:
-	Mystring();
-	~Mystring();
-	Mystring(const Mystring& str);
-	Mystring& operator= (const Mystring& str);
+	MyString();
+	~MyString();
+	MyString(const MyString& str);
+	MyString& operator= (const MyString& str);
 
-	friend istream& operator>> (istream& in, const Mystring& str);
-	friend ostream& operator<< (ostream& out, const Mystring& str);
-	friend Mystring& operator+ (const Mystring& str1, const Mystring& str2);
+	friend istream& operator>> (istream& in, const MyString& str);
+	friend ostream& operator<< (ostream& out, const MyString& str);
+	friend MyString& operator+ (const MyString& str1, const MyString& str2);
 
 	int length(void);
 private:
