@@ -7,13 +7,24 @@ public:
 	MyString();
 	~MyString();
 	MyString(const MyString& str);
+
 	MyString& operator= (const MyString& str);
 	MyString& operator+ (const MyString& str);
+	MyString& operator+= (const MyString& str);
+
+	bool operator== (const MyString& str);
+	bool operator!= (const MyString& str);
+	bool operator< (const MyString& str);
+	bool operator<= (const MyString& str);
+	bool operator> (const MyString& str);
+	bool operator>= (const MyString& str);
+	char& operator[] (const int& index);
 
 	friend istream& operator>> (istream& in, const MyString& str);
 	friend ostream& operator<< (ostream& out, const MyString& str);
 	
 	int length(void);
+
 private:
-	char str[10000];
+	char* str;
 };
