@@ -8,7 +8,7 @@ using namespace std;
 class MyString
 {
 public:
-	MyString() :l(0), str(NULL) {}
+	MyString() :l(0), str(nullptr) {}
 	~MyString() { delete[] str; }
 	MyString(const MyString& s);
 	MyString(const char* s);
