@@ -8,7 +8,7 @@ using namespace std;
 class MyString
 {
 public:
-	MyString() :length(0), str(NULL) {}
+	MyString() :l(0), str(NULL) {}
 	~MyString() { delete[] str; }
 	MyString(const MyString& s);
 	MyString(const char* s);
@@ -26,11 +26,11 @@ public:
 	bool operator !=(const MyString& s);
 	char& operator [](int p) const;
 
-	int GetLength() const { return length; }
-	bool IsEmpty() const { return length == 0; }
-	const char* Cstr() const { return (const char*)str; }
+	int length() const { return l; }
+	bool IsEmpty() const { return l == 0; }
+	const char* c_str() const { return (const char*)str; }
 	MyString SubString(int p, int n);
 private:
 	char* str;
-	int length;
+	int l;
 };

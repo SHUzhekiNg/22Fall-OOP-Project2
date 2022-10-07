@@ -2,23 +2,23 @@
 
 MyString::MyString(const MyString& s)
 {
-	length = strlen(s.Cstr());
-	str = new char[length + 1];
-	strcpy(str, s.Cstr());
+	l = strlen(s.c_str());
+	str = new char[l + 1];
+	strcpy(str, s.c_str());
 }
 
 MyString::MyString(const char* s)
 {
-	length = strlen(s);
-	str = new char[length + 1];
+	l = strlen(s);
+	str = new char[l + 1];
 	strcpy(str, s);
-	str[length] = '\0';
+	str[l] = '\0';
 }
 
 
 ostream& operator<<(ostream& out, const MyString& s)
 {
-	out << s.Cstr();
+	out << s.c_str();
 	return out;
 }
 
@@ -37,9 +37,9 @@ istream& operator>>(istream& in, MyString& ss)
 // È¡×Ó´®
 MyString MyString::SubString(int p, int n)
 {
-	if (0 <= p && p + n < GetLength() && 0 <= n) {
+	if (0 <= p && p + n < length() && 0 <= n) {
 		char* sub = new char[n + 1];
-		const char* s = Cstr();
+		const char* s = c_str();
 		strncpy(sub, s + p, n);
 		sub[n] = '\0';
 		MyString ss(sub);
@@ -55,8 +55,8 @@ MyString MyString::SubString(int p, int n)
 
 MyString MyString::operator +(const MyString& s)
 {
-	const char* cs1 = Cstr();
-	const char* cs2 = s.Cstr();
+	const char* cs1 = c_str();
+	const char* cs2 = s.c_str();
 	char* cs = new char[strlen(cs1) + strlen(cs2) + 1];
 	strcpy(cs, cs1);
 	strcat(cs, cs2);
@@ -69,17 +69,17 @@ MyString& MyString::operator =(const MyString& s)
 {
 	if (&s != this) {
 		delete[] str;
-		length = strlen(s.Cstr());
-		str = new char[length + 1];
-		strcpy(str, s.Cstr());
+		l = strlen(s.c_str());
+		str = new char[l + 1];
+		strcpy(str, s.c_str());
 	}
 	return *this;
 }
 
 /*
 MyString& MyString::operator +=(const MyString& s) {
-	const char* cs1 = Cstr();
-	const char* cs2 = s.Cstr();
+	const char* cs1 = c_str();
+	const char* cs2 = s.c_str();
 	char* cs = new char[strlen(cs1) + strlen(cs2) + 1];
 	strcpy(cs, cs1);
 	strcat(cs, cs2);
@@ -91,32 +91,32 @@ MyString& MyString::operator +=(const MyString& s) {
 */
 bool MyString::operator ==(const MyString& s)
 {
-	return strcmp(Cstr(), s.Cstr()) == 0;
+	return strcmp(c_str(), s.c_str()) == 0;
 }
 
 bool MyString::operator <(const MyString& s)
 {
-	return strcmp(Cstr(), s.Cstr()) < 0;
+	return strcmp(c_str(), s.c_str()) < 0;
 }
 
 bool MyString::operator >(const MyString& s)
 {
-	return strcmp(Cstr(), s.Cstr()) > 0;
+	return strcmp(c_str(), s.c_str()) > 0;
 }
 
 bool MyString::operator <=(const MyString& s)
 {
-	return strcmp(Cstr(), s.Cstr()) <= 0;
+	return strcmp(c_str(), s.c_str()) <= 0;
 }
 
 bool MyString::operator >=(const MyString& s)
 {
-	return strcmp(Cstr(), s.Cstr()) >= 0;
+	return strcmp(c_str(), s.c_str()) >= 0;
 }
 
 bool MyString::operator !=(const MyString& s)
 {
-	return strcmp(Cstr(), s.Cstr()) != 0;
+	return strcmp(c_str(), s.c_str()) != 0;
 }
 
 char& MyString::operator [](int p) const
