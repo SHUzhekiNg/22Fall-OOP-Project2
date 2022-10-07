@@ -1,30 +1,36 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <Windows.h>
+#include <cstring>
 using namespace std;
 
-class MyString {
+class MyString
+{
 public:
-	MyString();
-	~MyString();
-	MyString(const MyString& str);
+	MyString() :length(0), str(NULL) {}
+	~MyString() { delete[] str; }
+	MyString(const MyString& s);
+	MyString(const char* s);
 
-	MyString& operator= (const MyString& str);
-	MyString& operator+ (const MyString& str);
-	MyString& operator+= (const MyString& str);
+	friend ostream& operator<<(ostream& out, const MyString& s);
+	friend istream& operator>>(istream& in, MyString& s);
+	MyString operator +(const MyString& s);
+	MyString& operator =(const MyString& s);
+	//MyString& operator +=(const MyString& s);
+	bool operator ==(const MyString& s);
+	bool operator <(const MyString& s);
+	bool operator >(const MyString& s);
+	bool operator <=(const MyString& s);
+	bool operator >=(const MyString& s);
+	bool operator !=(const MyString& s);
+	char& operator [](int p) const;
 
-	bool operator== (const MyString& str);
-	bool operator!= (const MyString& str);
-	bool operator< (const MyString& str);
-	bool operator<= (const MyString& str);
-	bool operator> (const MyString& str);
-	bool operator>= (const MyString& str);
-	char& operator[] (const int& index);
-
-	friend istream& operator>> (istream& in, const MyString& str);
-	friend ostream& operator<< (ostream& out, const MyString& str);
-	
-	int length(void);
-
+	int GetLength() const { return length; }
+	bool IsEmpty() const { return length == 0; }
+	const char* Cstr() const { return (const char*)str; }
+	MyString SubString(int p, int n);
 private:
 	char* str;
+	int length;
 };

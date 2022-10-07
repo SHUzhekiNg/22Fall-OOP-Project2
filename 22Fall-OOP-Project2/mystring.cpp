@@ -1,61 +1,125 @@
 #include "mystring.h"
 
-MyString& MyString::operator=(const MyString& str)
+MyString::MyString(const MyString& s)
 {
-	// TODO: 在此处插入 return 语句
+	length = strlen(s.Cstr());
+	str = new char[length + 1];
+	strcpy(str, s.Cstr());
 }
 
-MyString& MyString::operator+(const MyString& str)
+MyString::MyString(const char* s)
 {
-	// TODO: 在此处插入 return 语句
+	length = strlen(s);
+	str = new char[length + 1];
+	strcpy(str, s);
+	str[length] = '\0';
 }
 
-MyString& MyString::operator+=(const MyString& str)
+
+ostream& operator<<(ostream& out, const MyString& s)
 {
-	// TODO: 在此处插入 return 语句
+	out << s.Cstr();
+	return out;
 }
 
-bool MyString::operator==(const MyString& str)
+istream& operator>>(istream& in, MyString& ss)
 {
-	return false;
+	string s;
+	in >> s;
+	char* cs = new char[s.length() + 1];
+	for (int i = 0; i < s.length(); i++)
+		cs[i] = s[i];
+	cs[s.length()] = '\0';
+	ss = cs;
+	return in;
 }
 
-bool MyString::operator!=(const MyString& str)
+// 取子串
+MyString MyString::SubString(int p, int n)
 {
-	return false;
+	if (0 <= p && p + n < GetLength() && 0 <= n) {
+		char* sub = new char[n + 1];
+		const char* s = Cstr();
+		strncpy(sub, s + p, n);
+		sub[n] = '\0';
+		MyString ss(sub);
+		delete[] sub;
+		return ss;
+	}
+	else {
+		MyString ss("");
+		return ss;
+	}
 }
 
-bool MyString::operator<(const MyString& str)
+
+MyString MyString::operator +(const MyString& s)
 {
-	return false;
+	const char* cs1 = Cstr();
+	const char* cs2 = s.Cstr();
+	char* cs = new char[strlen(cs1) + strlen(cs2) + 1];
+	strcpy(cs, cs1);
+	strcat(cs, cs2);
+	MyString s1(cs);
+	delete[] cs;
+	return s1;
 }
 
-bool MyString::operator<=(const MyString& str)
+MyString& MyString::operator =(const MyString& s)
 {
-	return false;
+	if (&s != this) {
+		delete[] str;
+		length = strlen(s.Cstr());
+		str = new char[length + 1];
+		strcpy(str, s.Cstr());
+	}
+	return *this;
 }
 
-bool MyString::operator>(const MyString& str)
+/*
+MyString& MyString::operator +=(const MyString& s) {
+	const char* cs1 = Cstr();
+	const char* cs2 = s.Cstr();
+	char* cs = new char[strlen(cs1) + strlen(cs2) + 1];
+	strcpy(cs, cs1);
+	strcat(cs, cs2);
+	MyString s1(cs);
+	*this = s1;
+	delete[] cs;
+	return *this;
+}
+*/
+bool MyString::operator ==(const MyString& s)
 {
-	return false;
+	return strcmp(Cstr(), s.Cstr()) == 0;
 }
 
-bool MyString::operator>=(const MyString& str)
+bool MyString::operator <(const MyString& s)
 {
-	return false;
+	return strcmp(Cstr(), s.Cstr()) < 0;
 }
 
-char& MyString::operator[](const int& index)
+bool MyString::operator >(const MyString& s)
 {
-	return str[index];
+	return strcmp(Cstr(), s.Cstr()) > 0;
 }
 
-istream& operator>>(istream& in, const MyString& str)
+bool MyString::operator <=(const MyString& s)
 {
-	// TODO: 在此处插入 return 语句
+	return strcmp(Cstr(), s.Cstr()) <= 0;
 }
 
-ostream& operator<<(ostream& out, const MyString& str)
+bool MyString::operator >=(const MyString& s)
 {
-	// TODO: 在此处插入 return 语句
+	return strcmp(Cstr(), s.Cstr()) >= 0;
+}
+
+bool MyString::operator !=(const MyString& s)
+{
+	return strcmp(Cstr(), s.Cstr()) != 0;
+}
+
+char& MyString::operator [](int p) const
+{
+	return str[p];
 }
