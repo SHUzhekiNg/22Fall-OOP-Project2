@@ -14,7 +14,7 @@ public:
 	MyString(const char* s);
 
 	friend ostream& operator<<(ostream& out, const MyString& s);
-	friend istream& operator>>(istream& in, MyString& s);
+	friend istream& operator>>(istream& in, MyString& ss);
 	MyString operator +(const MyString& s);
 	MyString& operator =(const MyString& s);
 	//MyString& operator +=(const MyString& s);
