@@ -120,6 +120,6 @@ bool MyString::operator !=(const MyString& s)
 
 char& MyString::operator [](int p) const
 {
-	if (p >= l) cerr << "下表越界！" << endl;
+	if (p >= l) cerr << "下标越界！" << endl;
 	return str[p];
 }
