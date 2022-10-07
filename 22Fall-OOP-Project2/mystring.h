@@ -17,7 +17,7 @@ public:
 	friend istream& operator>>(istream& in, MyString& ss);
 	MyString operator +(const MyString& s);
 	MyString& operator =(const MyString& s);
-	//MyString& operator +=(const MyString& s);
+	MyString& operator +=(const MyString& s);
 	bool operator ==(const MyString& s);
 	bool operator <(const MyString& s);
 	bool operator >(const MyString& s);

@@ -76,7 +76,7 @@ MyString& MyString::operator =(const MyString& s)
 	return *this;
 }
 
-/*
+
 MyString& MyString::operator +=(const MyString& s) {
 	const char* cs1 = c_str();
 	const char* cs2 = s.c_str();
@@ -88,7 +88,7 @@ MyString& MyString::operator +=(const MyString& s) {
 	delete[] cs;
 	return *this;
 }
-*/
+
 bool MyString::operator ==(const MyString& s)
 {
 	return strcmp(c_str(), s.c_str()) == 0;

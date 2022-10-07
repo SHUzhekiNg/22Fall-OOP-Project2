@@ -3,6 +3,7 @@ int main()
 {
 	MyString s1("2022Fall-OOP");
 	MyString s2("2022");
+	MyString s3;
 	int c = 1;
 	int p, l;
 
@@ -50,8 +51,11 @@ int main()
 				cout << s1 << endl;
 				cout << "字符串s2为：";
 				cout << s2 << endl;
-				s1 = s1 + s2;
-				cout << endl << "字符串连接结果为：";
+				s3 = s1 + s2;
+				cout << endl << "字符串连接结果（使用+）为：";
+				cout << s3 << endl;
+				s1 += s2;
+				cout << endl << "字符串连接结果（使用+=）为：";
 				cout << s1 << endl;
 				break;
 			case 5:
