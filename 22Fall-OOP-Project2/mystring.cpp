@@ -15,7 +15,6 @@ MyString::MyString(const char* s)
 	str[l] = '\0';
 }
 
-
 ostream& operator<<(ostream& out, const MyString& s)
 {
 	out << s.c_str();
@@ -121,5 +120,6 @@ bool MyString::operator !=(const MyString& s)
 
 char& MyString::operator [](int p) const
 {
+	if (p >= l) cerr << "下表越界！" << endl;
 	return str[p];
 }
