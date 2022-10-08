@@ -1,12 +1,13 @@
 #include "mystring.h"
 int main()
 {
-	MyString s1("2022Fall-OOP");
-	MyString s2("2022");
+	MyString s1("SHU");
+	MyString s2("OOP");
 	MyString s3;
+
 	int c = 1;
 	int p, l;
-
+	
 	while (c) {
 		cout << "当前默认字符串为:s1=" << s1 << ", s2=" << s2 << endl << "请选择测试操作:";
 		cout << endl << "1. 测试关系运算符==";
@@ -34,7 +35,12 @@ int main()
 				cout << s1 << endl;
 				cout << "输入子串的起点位置和长度：" << endl;
 				cin >> p >> l;
-				s2 = s1.SubString(p, l);
+				try { s2 = s1.SubString(p, l); }
+				catch (const char* msg) 
+				{ 
+					cerr << msg << endl; 
+					s2 = "";
+				}
 				cout << endl << "取子串结果为：";
 				cout << s2 << endl;
 				break;
@@ -44,7 +50,13 @@ int main()
 				cout << endl << "输入字符下标：";
 				cin >> p;
 				cout << endl << "测试下标运算符结果为：" << endl;
-				cout << s1[p] << endl;
+				try {
+					cout << s1[p] << endl; 
+				}
+				catch (out_of_range& e)
+				{
+					cerr << e.what() << endl;
+				}
 				break;
 			case 4:
 				cout << "字符串s1为：";
